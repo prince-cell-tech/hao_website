@@ -1,0 +1,180 @@
+---
+const team = [
+  {
+    name: "Emmanuel Osei",
+    role: "Lead Safari Guide & Co-Founder",
+    bio: "Born and raised on the edge of the Serengeti, Emmanuel has 18 years of guiding experience and holds a Level 3 Field Guide certification. He speaks four languages and has an encyclopedic knowledge of East African ecosystems.",
+    speciality: "Serengeti & Ngorongoro",
+    image: "/images/maasai-guide.png",
+  },
+  {
+    name: "David Chen",
+    role: "Kilimanjaro Lead Guide",
+    bio: "A veteran of over 200 successful Kilimanjaro summits, David is a certified Wilderness First Responder and altitude medicine specialist. He personally selects every acclimatization campsite on our mountain routes.",
+    speciality: "Kilimanjaro & Rwenzori",
+    image: "/images/guide-male.png",
+  },
+  {
+    name: "Sarah Müller",
+    role: "Conservation Director",
+    bio: "Sarah holds a doctorate in African wildlife ecology and leads our conservation partnerships with six community land trusts across Tanzania and Kenya. She also runs our guest naturalist programmes in the field.",
+    speciality: "Wildlife Ecology & Conservation",
+    image: "/images/guide-female.png",
+  },
+];
+---
+
+<section class="team" id="team">
+  <div class="container">
+    <header class="team__header">
+      <span class="section-label">The People Behind HAO</span>
+      <h2>Meet your guides</h2>
+      <p>Our team of naturalists, mountain specialists, and logistics experts bring decades of cumulative experience across Africa's wildest terrain.</p>
+    </header>
+
+    <div class="team__grid">
+      {team.map((member) => (
+        <article class="team-card">
+          <div class="team-card__image">
+            <img src={member.image} alt={member.name} loading="lazy" />
+          </div>
+          <div class="team-card__body">
+            <span class="team-card__speciality">{member.speciality}</span>
+            <h3 class="team-card__name">{member.name}</h3>
+            <p class="team-card__role">{member.role}</p>
+            <p class="team-card__bio">{member.bio}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="team__cta">
+      <p>All HAO guides hold professional guiding certifications and annual wildlife monitoring credentials.</p>
+      <a href="#contact" class="btn-outline">Ask About Our Team</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .team {
+    padding: var(--section-padding) 0;
+    background: var(--green-deep);
+  }
+
+  .team__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    color: var(--white);
+  }
+
+  .team__header .section-label {
+    color: var(--gold);
+  }
+
+  .team__header h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .team__header p {
+    color: rgba(255,255,255,0.65);
+    max-width: 50ch;
+    margin: 0 auto;
+    font-size: 0.95rem;
+    text-align: center;
+  }
+
+  .team__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .team-card__image {
+    height: 340px;
+    overflow: hidden;
+  }
+
+  .team-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    filter: grayscale(20%);
+    transition: filter 0.4s ease, transform 0.5s ease;
+  }
+
+  .team-card:hover .team-card__image img {
+    filter: grayscale(0%);
+    transform: scale(1.03);
+  }
+
+  .team-card__body {
+    padding: 1.5rem 0 0;
+  }
+
+  .team-card__speciality {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  .team-card__name {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+
+  .team-card__role {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0.875rem;
+    max-width: none;
+    line-height: 1.4;
+  }
+
+  .team-card__bio {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.7;
+    max-width: 38ch;
+  }
+
+  .team__cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    flex-wrap: wrap;
+  }
+
+  .team__cta p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.5);
+    max-width: 40ch;
+    text-align: center;
+  }
+
+  .team__cta .btn-outline {
+    white-space: nowrap;
+  }
+
+  @media (max-width: 900px) {
+    .team__grid { grid-template-columns: 1fr; max-width: 480px; margin-left: auto; margin-right: auto; }
+    .team-card__bio { max-width: none; }
+  }
+</style>

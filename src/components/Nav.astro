@@ -1,0 +1,168 @@
+---
+---
+
+<nav class="nav" id="nav">
+  <div class="nav__inner container">
+    <a href="/" class="nav__logo">
+      <img src="/images/logo.png" alt="HAO Expedition & Safari" width="56" height="56" />
+    </a>
+
+    <ul class="nav__links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#tours">Tours</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="btn-gold nav__cta">Plan Your Trip</a>
+
+    <button class="nav__burger" id="navBurger" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="nav__mobile" id="navMobile">
+    <ul>
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#tours">Tours</a></li>
+      <li><a href="#about">About Us</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-gold">Plan Your Trip</a>
+  </div>
+</nav>
+
+<style>
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .nav.scrolled {
+    background: var(--green-deep);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.3);
+  }
+
+  .nav__inner {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .nav__logo img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+  }
+
+  .nav__links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+    margin-left: auto;
+  }
+
+  .nav__links a {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+
+  .nav__links a:hover {
+    color: var(--gold-light);
+  }
+
+  .nav__cta {
+    margin-left: 1.5rem;
+    padding: 0.6rem 1.5rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .nav__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    margin-left: auto;
+  }
+
+  .nav__burger span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.2s;
+  }
+
+  .nav__mobile {
+    display: none;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem var(--container-pad);
+    background: var(--green-deep);
+  }
+
+  .nav__mobile ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .nav__mobile a {
+    color: rgba(255,255,255,0.85);
+    font-size: 1.1rem;
+  }
+
+  .nav__mobile.open {
+    display: flex;
+  }
+
+  @media (max-width: 768px) {
+    .nav__links { display: none; }
+    .nav__cta { display: none; }
+    .nav__burger { display: flex; }
+  }
+</style>
+
+<script>
+  const nav = document.getElementById('nav');
+  const burger = document.getElementById('navBurger');
+  const mobile = document.getElementById('navMobile');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav?.classList.add('scrolled');
+    } else {
+      nav?.classList.remove('scrolled');
+    }
+  });
+
+  burger?.addEventListener('click', () => {
+    const isOpen = mobile?.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  // Close mobile menu on link click
+  mobile?.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobile.classList.remove('open');
+      burger?.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>

@@ -1,0 +1,234 @@
+---
+const destinations = [
+  {
+    name: "Serengeti",
+    country: "Tanzania",
+    image: "/images/great-migration.png",
+    description: "Witness the Great Migration — over two million wildebeest and zebra moving across the endless plains.",
+    highlights: ["Big Five sightings", "Great Migration", "Hot air balloon safaris"],
+  },
+  {
+    name: "Kilimanjaro",
+    country: "Tanzania",
+    image: "/images/kilimanjaro-peak.png",
+    description: "Summit Africa's highest peak and stand above the clouds on the Roof of Africa.",
+    highlights: ["7 trekking routes", "5,895m summit", "Glacial summit views"],
+  },
+  {
+    name: "Zanzibar",
+    country: "Tanzania",
+    image: "/images/zanzibar-beach.png",
+    description: "White sand beaches, turquoise waters, and a rich Swahili culture on the Spice Island.",
+    highlights: ["Pristine beaches", "Dhow sailing", "Stone Town history"],
+  },
+  {
+    name: "Maasai Mara",
+    country: "Kenya",
+    image: "/images/lions.png",
+    description: "Kenya's crown jewel — dramatic lion prides, cheetah chases, and sweeping golden savanna.",
+    highlights: ["Year-round game", "Maasai culture", "River crossings"],
+  },
+];
+---
+
+<section class="destinations" id="destinations">
+  <div class="container">
+    <header class="destinations__header">
+      <div>
+        <span class="section-label">Where We Go</span>
+        <h2>African Destinations</h2>
+      </div>
+      <p class="destinations__intro">
+        From Tanzania's iconic wilderness to Kenya's golden plains — we operate across twelve destinations, each extraordinary in its own way.
+      </p>
+    </header>
+
+    <div class="destinations__grid">
+      {destinations.map((dest, i) => (
+        <article class="dest-card" data-index={i}>
+          <div class="dest-card__image">
+            <img src={dest.image} alt={`${dest.name}, ${dest.country}`} loading="lazy" />
+            <div class="dest-card__overlay"></div>
+          </div>
+          <div class="dest-card__body">
+            <div class="dest-card__location">
+              <span class="dest-card__country">{dest.country}</span>
+            </div>
+            <h3 class="dest-card__name">{dest.name}</h3>
+            <p class="dest-card__desc">{dest.description}</p>
+            <ul class="dest-card__highlights">
+              {dest.highlights.map(h => (
+                <li>
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                    <circle cx="6" cy="6" r="5.5" stroke="currentColor" stroke-width="1"/>
+                    <circle cx="6" cy="6" r="2" fill="currentColor"/>
+                  </svg>
+                  {h}
+                </li>
+              ))}
+            </ul>
+            <a href="#contact" class="dest-card__link">
+              Explore {dest.name}
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .destinations {
+    padding: var(--section-padding) 0;
+    background: var(--ivory);
+  }
+
+  .destinations__header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .destinations__header h2 {
+    color: var(--green-deep);
+    margin-top: 0.4rem;
+  }
+
+  .destinations__intro {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.7;
+    align-self: end;
+    max-width: 48ch;
+  }
+
+  .destinations__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
+  .dest-card {
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--green-deep);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+
+  .dest-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .dest-card__image {
+    position: relative;
+    height: 240px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .dest-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .dest-card:hover .dest-card__image img {
+    transform: scale(1.05);
+  }
+
+  .dest-card__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, rgba(15,35,24,0.6) 100%);
+  }
+
+  .dest-card__body {
+    padding: 1.5rem;
+    color: var(--white);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dest-card__location {
+    margin-bottom: 0.4rem;
+  }
+
+  .dest-card__country {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .dest-card__name {
+    font-size: 1.6rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    color: var(--white);
+  }
+
+  .dest-card__desc {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: none;
+  }
+
+  .dest-card__highlights {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+    margin-top: auto;
+  }
+
+  .dest-card__highlights li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.65);
+  }
+
+  .dest-card__highlights svg {
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .dest-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--gold);
+    transition: gap 0.2s;
+  }
+
+  .dest-card__link:hover {
+    gap: 0.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .destinations__grid { grid-template-columns: repeat(2, 1fr); }
+    .destinations__header { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 600px) {
+    .destinations__grid { grid-template-columns: 1fr; }
+  }
+</style>

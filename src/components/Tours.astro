@@ -1,0 +1,291 @@
+---
+const tours = [
+  {
+    id: "serengeti-classic",
+    name: "Serengeti Classic Safari",
+    duration: "8 Days",
+    groupSize: "2–8 guests",
+    price: "From $4,200",
+    image: "/images/safari-drive.png",
+    tag: "Most Popular",
+    tagColor: "gold",
+    description: "Game drives across the Serengeti's open plains, from dawn wildlife viewing to candlelit dinners under acacia trees.",
+    includes: ["Private 4×4 vehicles", "Expert naturalist guide", "Luxury tented camps", "All meals included"],
+  },
+  {
+    id: "kilimanjaro-trek",
+    name: "Kilimanjaro Summit Trek",
+    duration: "10 Days",
+    groupSize: "2–12 guests",
+    price: "From $3,600",
+    image: "/images/kilimanjaro-sunset.png",
+    tag: "Adventure",
+    tagColor: "green",
+    description: "Follow the Lemosho or Machame route to the summit of Africa, with acclimatization camps and expert mountain guides.",
+    includes: ["Certified mountain guides", "Full camping kit", "Altitude monitoring", "Summit certificate"],
+  },
+  {
+    id: "great-migration",
+    name: "Great Migration Witness",
+    duration: "12 Days",
+    groupSize: "2–6 guests",
+    price: "From $6,800",
+    image: "/images/great-migration.png",
+    tag: "Seasonal",
+    tagColor: "gold",
+    description: "Time your journey with the annual wildebeest migration — river crossings, predator hunts, and the spectacle of a million animals.",
+    includes: ["Migration tracking", "River crossing viewpoints", "Hot air balloon flight", "Mobile camps"],
+  },
+  {
+    id: "zanzibar-extension",
+    name: "Zanzibar Beach Extension",
+    duration: "5 Days",
+    groupSize: "2–10 guests",
+    price: "From $1,900",
+    image: "/images/zanzibar-beach.png",
+    tag: "Relaxation",
+    tagColor: "green",
+    description: "A perfect post-safari unwinding — snorkel the Indian Ocean reefs, sail on a traditional dhow, and explore Zanzibar's Stone Town.",
+    includes: ["Boutique beach lodge", "Snorkeling excursion", "Dhow sunset cruise", "Spice tour"],
+  },
+  {
+    id: "leopard-encounter",
+    name: "Big Five Premium Safari",
+    duration: "7 Days",
+    groupSize: "2–4 guests",
+    price: "From $7,500",
+    image: "/images/leopard.png",
+    tag: "Premium",
+    tagColor: "gold",
+    description: "An intimate small-group experience dedicated to tracking the Big Five across three of Tanzania's premier reserves.",
+    includes: ["Private exclusive reserve", "Walking safaris", "Night game drives", "5-star lodge"],
+  },
+  {
+    id: "family-safari",
+    name: "Family Safari Adventure",
+    duration: "9 Days",
+    groupSize: "Families",
+    price: "From $3,200",
+    image: "/images/lions.png",
+    tag: "Family",
+    tagColor: "green",
+    description: "A safari designed for families with children — junior ranger programs, age-appropriate game drives, and memories that last a lifetime.",
+    includes: ["Junior ranger kits", "Family-friendly lodges", "Bush walks for kids", "Conservation talks"],
+  },
+];
+
+const tagColors: Record<string, string> = {
+  gold: "#C9962B",
+  green: "#2A5438",
+};
+---
+
+<section class="tours" id="tours">
+  <div class="container">
+    <header class="tours__header">
+      <span class="section-label">Our Expeditions</span>
+      <h2>Curated Safari Tours</h2>
+      <p>Every itinerary is crafted by our field experts — tailored to seasons, wildlife movements, and your pace of adventure.</p>
+    </header>
+
+    <div class="tours__grid">
+      {tours.map((tour) => (
+        <article class="tour-card">
+          <div class="tour-card__image-wrap">
+            <img src={tour.image} alt={tour.name} loading="lazy" />
+            <span
+              class="tour-card__tag"
+              style={`background: ${tagColors[tour.tagColor]};`}
+            >
+              {tour.tag}
+            </span>
+          </div>
+          <div class="tour-card__body">
+            <div class="tour-card__meta">
+              <span>{tour.duration}</span>
+              <span class="tour-card__dot">·</span>
+              <span>{tour.groupSize}</span>
+            </div>
+            <h3 class="tour-card__name">{tour.name}</h3>
+            <p class="tour-card__desc">{tour.description}</p>
+            <ul class="tour-card__includes">
+              {tour.includes.map(item => (
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <path d="M2 7l3.5 3.5L12 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div class="tour-card__footer">
+              <span class="tour-card__price">{tour.price}</span>
+              <a href="#contact" class="btn-gold tour-card__btn">Book Now</a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .tours {
+    padding: var(--section-padding) 0;
+    background: var(--ivory-dark);
+  }
+
+  .tours__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+  }
+
+  .tours__header h2 {
+    color: var(--green-deep);
+    margin-bottom: 1rem;
+  }
+
+  .tours__header p {
+    color: var(--text-muted);
+    max-width: 52ch;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+
+  .tours__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  .tour-card {
+    background: var(--white);
+    border-radius: 2px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .tour-card:hover {
+    box-shadow: 0 16px 48px rgba(15,35,24,0.12);
+    transform: translateY(-3px);
+  }
+
+  .tour-card__image-wrap {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+  }
+
+  .tour-card__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .tour-card:hover .tour-card__image-wrap img {
+    transform: scale(1.05);
+  }
+
+  .tour-card__tag {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    padding: 0.3rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 1px;
+  }
+
+  .tour-card__body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .tour-card__meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.03em;
+  }
+
+  .tour-card__dot {
+    color: var(--gold);
+  }
+
+  .tour-card__name {
+    font-size: 1.3rem;
+    font-weight: 500;
+    color: var(--green-deep);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+
+  .tour-card__desc {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    margin-bottom: 1.25rem;
+    max-width: none;
+  }
+
+  .tour-card__includes {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tour-card__includes li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+
+  .tour-card__includes svg {
+    color: var(--green-mid);
+    flex-shrink: 0;
+  }
+
+  .tour-card__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--ivory-dark);
+  }
+
+  .tour-card__price {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--green-deep);
+  }
+
+  .tour-card__btn {
+    padding: 0.6rem 1.25rem;
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 1024px) {
+    .tours__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 600px) {
+    .tours__grid { grid-template-columns: 1fr; }
+  }
+</style>

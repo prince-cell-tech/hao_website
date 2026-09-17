@@ -1,0 +1,275 @@
+---
+const testimonials = [
+  {
+    quote: "We have done safaris on three continents, and nothing comes close to what HAO put together for us in the Serengeti. The level of knowledge our guide had was extraordinary — he could read the landscape like a book.",
+    author: "James & Patricia W.",
+    location: "San Francisco, USA",
+    tour: "Serengeti Classic Safari",
+    image: "/images/review-couple.png",
+    stars: 5,
+  },
+  {
+    quote: "Reaching the summit of Kilimanjaro was the hardest thing I've ever done, and the most meaningful. The guides were with me every step — never rushed, always encouraging. I can't imagine doing it with anyone else.",
+    author: "Sophie L.",
+    location: "London, UK",
+    tour: "Kilimanjaro Summit Trek",
+    image: "/images/review-female.png",
+    stars: 5,
+  },
+  {
+    quote: "The candlelit dinner they arranged under the acacia trees on our last night in the bush — I still can't believe that was real life. Absolute perfection. We're already planning to come back.",
+    author: "Daniel M.",
+    location: "Toronto, Canada",
+    tour: "Great Migration Witness",
+    image: "/images/review-male.png",
+    stars: 5,
+  },
+];
+---
+
+<section class="testimonials" id="testimonials">
+  <div class="testimonials__bg">
+    <img src="/images/kilimanjaro-sunset.png" alt="Golden Kilimanjaro sunset" loading="lazy" />
+    <div class="testimonials__overlay"></div>
+  </div>
+
+  <div class="container testimonials__inner">
+    <header class="testimonials__header">
+      <span class="section-label" style="color: var(--gold-light)">What Guests Say</span>
+      <h2>Stories from the field</h2>
+      <div class="testimonials__rating">
+        <div class="testimonials__stars">
+          {'★★★★★'.split('').map(s => <span>{s}</span>)}
+        </div>
+        <p>4.97 average across 380+ verified reviews</p>
+      </div>
+    </header>
+
+    <div class="testimonials__grid">
+      {testimonials.map((t, i) => (
+        <article class="review-card" data-index={i}>
+          <div class="review-card__quote-mark">"</div>
+          <p class="review-card__text">{t.quote}</p>
+          <div class="review-card__footer">
+            <div class="review-card__avatar">
+              <img src={t.image} alt={t.author} loading="lazy" />
+            </div>
+            <div class="review-card__author">
+              <strong>{t.author}</strong>
+              <span>{t.location}</span>
+              <span class="review-card__tour">{t.tour}</span>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="testimonials__logos">
+      <p class="testimonials__logos-label">As featured in</p>
+      <div class="testimonials__logos-row">
+        <span>National Geographic Traveller</span>
+        <span>·</span>
+        <span>Condé Nast Traveler</span>
+        <span>·</span>
+        <span>Travel + Leisure</span>
+        <span>·</span>
+        <span>Lonely Planet</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    position: relative;
+    padding: var(--section-padding) 0;
+    overflow: hidden;
+  }
+
+  .testimonials__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .testimonials__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .testimonials__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 26, 16, 0.88);
+  }
+
+  .testimonials__inner {
+    position: relative;
+    z-index: 1;
+  }
+
+  .testimonials__header {
+    text-align: center;
+    margin-bottom: 3.5rem;
+    color: var(--white);
+  }
+
+  .testimonials__header h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .testimonials__rating {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .testimonials__stars {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  .testimonials__stars span {
+    color: var(--gold);
+    font-size: 1.25rem;
+  }
+
+  .testimonials__rating p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.6);
+    max-width: none;
+    text-align: center;
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .review-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    backdrop-filter: blur(8px);
+    transition: background 0.3s ease;
+  }
+
+  .review-card:hover {
+    background: rgba(255,255,255,0.1);
+  }
+
+  .review-card__quote-mark {
+    font-family: var(--font-serif);
+    font-size: 4rem;
+    color: var(--gold);
+    line-height: 0.5;
+    height: 1.5rem;
+    overflow: visible;
+  }
+
+  .review-card__text {
+    font-size: 0.925rem;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.75;
+    font-style: italic;
+    max-width: none;
+    flex: 1;
+  }
+
+  .review-card__footer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .review-card__avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid var(--gold);
+  }
+
+  .review-card__avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .review-card__author {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .review-card__author strong {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+
+  .review-card__author span {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.5);
+  }
+
+  .review-card__tour {
+    color: var(--gold) !important;
+    font-size: 0.7rem !important;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+  }
+
+  /* Featured in bar */
+  .testimonials__logos {
+    text-align: center;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+
+  .testimonials__logos-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1rem;
+    max-width: none;
+    text-align: center;
+  }
+
+  .testimonials__logos-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .testimonials__logos-row span {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 1rem;
+    color: rgba(255,255,255,0.4);
+    transition: color 0.2s;
+  }
+
+  .testimonials__logos-row span:not(:nth-child(even)):hover {
+    color: rgba(255,255,255,0.7);
+  }
+
+  @media (max-width: 900px) {
+    .testimonials__grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+  }
+</style>

@@ -1,0 +1,303 @@
+---
+const currentYear = new Date().getFullYear();
+
+const footerLinks = {
+  Expeditions: [
+    "Serengeti Classic Safari",
+    "Kilimanjaro Summit Trek",
+    "Great Migration Witness",
+    "Zanzibar Beach Extension",
+    "Big Five Premium Safari",
+    "Family Safari Adventure",
+  ],
+  Destinations: [
+    "Serengeti, Tanzania",
+    "Kilimanjaro, Tanzania",
+    "Zanzibar, Tanzania",
+    "Maasai Mara, Kenya",
+    "Ngorongoro Crater",
+    "Tarangire National Park",
+  ],
+  Company: [
+    "About HAO",
+    "Our Guides",
+    "Conservation Pledge",
+    "Travel Blog",
+    "Press & Media",
+    "Careers",
+  ],
+  Support: [
+    "Plan Your Trip",
+    "FAQ",
+    "Booking Terms",
+    "Travel Insurance",
+    "Visa Information",
+    "Health & Safety",
+  ],
+};
+---
+
+<footer class="footer">
+  <div class="footer__top container">
+    <div class="footer__brand">
+      <a href="/" class="footer__logo">
+        <img src="/images/logo.png" alt="HAO Expedition & Safari" width="72" height="72" />
+      </a>
+      <p class="footer__tagline">
+        Crafting extraordinary safari experiences across East Africa since 2010. Small groups. Expert guides. Unforgettable wilderness.
+      </p>
+      <div class="footer__accreditations">
+        <span class="footer__badge">TATO Member</span>
+        <span class="footer__badge">Eco-Certified</span>
+        <span class="footer__badge">KATO Member</span>
+      </div>
+    </div>
+
+    <nav class="footer__nav">
+      {Object.entries(footerLinks).map(([category, links]) => (
+        <div class="footer__nav-col">
+          <h4 class="footer__nav-heading">{category}</h4>
+          <ul>
+            {links.map(link => (
+              <li><a href="#contact">{link}</a></li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </nav>
+  </div>
+
+  <div class="footer__newsletter">
+    <div class="container footer__newsletter-inner">
+      <div>
+        <h4>Safari inspiration, delivered</h4>
+        <p>Migration calendars, wildlife guides, and itinerary inspiration — straight to your inbox.</p>
+      </div>
+      <form class="footer__newsletter-form" id="newsletterForm">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn-gold">Subscribe</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="footer__bottom container">
+    <p class="footer__copy">
+      © {currentYear} HAO Expedition & Safari Ltd. All rights reserved. Registered in Tanzania.
+    </p>
+    <div class="footer__legal">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--green-deep);
+    color: rgba(255,255,255,0.65);
+  }
+
+  /* ---- Top section ---- */
+  .footer__top {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 4rem;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer__logo img {
+    width: 68px;
+    height: 68px;
+    object-fit: contain;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__tagline {
+    font-size: 0.875rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.5rem;
+    max-width: 30ch;
+  }
+
+  .footer__accreditations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer__badge {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid rgba(201,150,43,0.35);
+    padding: 0.3rem 0.6rem;
+  }
+
+  /* ---- Nav columns ---- */
+  .footer__nav {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .footer__nav-heading {
+    font-family: var(--font-sans);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .footer__nav a {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.6);
+    transition: color 0.2s;
+  }
+
+  .footer__nav a:hover {
+    color: var(--gold-light);
+  }
+
+  /* ---- Newsletter ---- */
+  .footer__newsletter {
+    background: var(--green-forest);
+    padding: 2.5rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .footer__newsletter-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__newsletter h4 {
+    font-family: var(--font-serif);
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .footer__newsletter p {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.55);
+    max-width: 40ch;
+  }
+
+  .footer__newsletter-form {
+    display: flex;
+    gap: 0;
+    flex-shrink: 0;
+  }
+
+  .footer__newsletter-form input {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.15);
+    border-right: none;
+    color: var(--white);
+    padding: 0.75rem 1.25rem;
+    width: 260px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .footer__newsletter-form input::placeholder {
+    color: rgba(255,255,255,0.4);
+  }
+
+  .footer__newsletter-form input:focus {
+    border-color: var(--gold);
+  }
+
+  .footer__newsletter-form .btn-gold {
+    border-radius: 0;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.8rem;
+  }
+
+  /* ---- Bottom bar ---- */
+  .footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .footer__copy {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    max-width: none;
+  }
+
+  .footer__legal {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer__legal a {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    transition: color 0.2s;
+  }
+
+  .footer__legal a:hover {
+    color: rgba(255,255,255,0.6);
+  }
+
+  @media (max-width: 1024px) {
+    .footer__top { grid-template-columns: 1fr; gap: 2rem; }
+    .footer__tagline { max-width: none; }
+  }
+
+  @media (max-width: 768px) {
+    .footer__nav { grid-template-columns: repeat(2, 1fr); }
+    .footer__newsletter-form { flex-direction: column; width: 100%; }
+    .footer__newsletter-form input { width: 100%; border-right: 1.5px solid rgba(255,255,255,0.15); border-bottom: none; }
+    .footer__newsletter-form .btn-gold { width: 100%; justify-content: center; }
+  }
+
+  @media (max-width: 500px) {
+    .footer__nav { grid-template-columns: 1fr; }
+    .footer__bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+
+<script>
+  const newsletterForm = document.getElementById('newsletterForm') as HTMLFormElement;
+  newsletterForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = newsletterForm.querySelector('button');
+    if (btn) {
+      btn.textContent = 'Subscribed ✓';
+      btn.style.background = 'var(--green-mid)';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe';
+        btn.style.background = '';
+        newsletterForm.reset();
+      }, 3000);
+    }
+  });
+</script>

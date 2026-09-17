@@ -1,0 +1,140 @@
+---
+---
+
+<section class="experience">
+  <div class="experience__image">
+    <img src="/images/dinner-savanna.png" alt="Candlelit dinner under acacia trees on the Tanzanian savanna" loading="lazy" />
+    <div class="experience__image-overlay"></div>
+  </div>
+
+  <div class="experience__content container">
+    <div class="experience__text">
+      <span class="section-label">The HAO Difference</span>
+      <h2>Safari is about<br />how it feels</h2>
+      <p>
+        We obsess over every detail of your journey — from the campfire conversations with your guide to the way your tent frames the morning light. The wild is magnificent; our role is to make you feel completely at home within it.
+      </p>
+
+      <div class="experience__features">
+        <div class="experience__feature">
+          <span class="experience__feature-num">01</span>
+          <div>
+            <h4>Expert-Led Always</h4>
+            <p>Every expedition is led by a certified naturalist guide with a minimum of eight years in the field.</p>
+          </div>
+        </div>
+        <div class="experience__feature">
+          <span class="experience__feature-num">02</span>
+          <div>
+            <h4>Handpicked Camps</h4>
+            <p>We partner only with camps that share our commitment to low-impact, high-experience hospitality.</p>
+          </div>
+        </div>
+        <div class="experience__feature">
+          <span class="experience__feature-num">03</span>
+          <div>
+            <h4>Real Flexibility</h4>
+            <p>Safari doesn't run on a schedule. We adapt in real time — chasing sightings, extending drives, changing routes as the wilderness dictates.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="#contact" class="btn-gold">Start Planning</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience {
+    position: relative;
+    min-height: 640px;
+    display: flex;
+    align-items: center;
+  }
+
+  .experience__image {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .experience__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .experience__image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(10, 26, 16, 0.92) 0%,
+      rgba(10, 26, 16, 0.7) 55%,
+      rgba(10, 26, 16, 0.25) 100%
+    );
+  }
+
+  .experience__content {
+    position: relative;
+    z-index: 1;
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+
+  .experience__text {
+    max-width: 540px;
+    color: var(--white);
+  }
+
+  .experience__text h2 {
+    margin-bottom: 1rem;
+    color: var(--white);
+  }
+
+  .experience__text > p {
+    color: rgba(255,255,255,0.75);
+    font-size: 0.95rem;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    max-width: 44ch;
+  }
+
+  .experience__features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .experience__feature {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+  }
+
+  .experience__feature-num {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    flex-shrink: 0;
+    width: 2.5rem;
+  }
+
+  .experience__feature h4 {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+
+  .experience__feature p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.65;
+    max-width: 38ch;
+  }
+</style>
