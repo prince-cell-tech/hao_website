@@ -1,0 +1,117 @@
+---
+
+---
+
+<section class="watch" id="watch">
+  <div class="container watch__inner">
+    <header class="watch__header">
+      <span class="section-label">Field Footage</span>
+      <h2>30 seconds in the wild</h2>
+      <p>Shot on safari — press play and feel it before you book it.</p>
+    </header>
+
+    <div class="watch__phone">
+      <video
+        id="watchVideo"
+        width="360"
+        height="640"
+        preload="none"
+        playsinline
+        poster="/images/great-migration.png"
+      >
+        <source src="/videos/watch-safari.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <button
+        id="watchPlay"
+        class="watch__play"
+        type="button"
+        aria-label="Play safari video"
+      >
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M9 6.5v15l12-7.5-12-7.5Z" fill="currentColor" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<script>
+  const video = document.getElementById('watchVideo');
+  const playBtn = document.getElementById('watchPlay');
+  if (video instanceof HTMLVideoElement && playBtn instanceof HTMLButtonElement) {
+    playBtn.addEventListener('click', () => {
+      video.setAttribute('controls', '');
+      playBtn.hidden = true;
+      void video.play();
+    });
+  }
+</script>
+
+<style>
+  .watch {
+    padding: var(--section-padding) 0;
+    background: var(--green-deep);
+  }
+
+  .watch__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+  }
+
+  .watch__header h2 {
+    color: var(--white);
+  }
+
+  .watch__header p {
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 0.75rem;
+  }
+
+  .watch__phone {
+    position: relative;
+    width: min(320px, 100%);
+    aspect-ratio: 9 / 16;
+    border-radius: 1.75rem;
+    overflow: hidden;
+    border: 6px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.45);
+    background: #000;
+  }
+
+  .watch__phone video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .watch__play {
+    position: absolute;
+    inset: 0;
+    margin: auto;
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--green-deep);
+    background: var(--gold);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    transition: transform 0.2s ease;
+  }
+
+  .watch__play:hover {
+    transform: scale(1.06);
+  }
+
+  .watch__play[hidden] {
+    display: none;
+  }
+</style>
