@@ -1,6 +1,8 @@
 <?php
 // Front controller for Hostinger PHP hosting - serves Astro static build from dist/
-// Upload layout in public_html/: index.php, .htaccess, dist/{index.html,packages/index.html,_astro/*,images/*}
+// Upload layout in public_html/: index.php, .htaccess, dist/{index.html,packages/index.html,_astro/*,images/*,videos/*}
+// NOTE: binary assets (/videos/*, /_astro/*, /images/*) are served directly by
+// Apache via .htaccess rewrites (preserves HTTP Range seeking) - never routed here.
 
 $base = __DIR__ . '/dist';
 
