@@ -1,0 +1,988 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+const routes = {
+  "5-Day Climbing": {
+    subtitle: "+ 2 days in a hotel",
+    icon: "🏔",
+    days: 5,
+    packages: [
+      { name: "Marangu route 5 days", price: 3097 },
+    ],
+  },
+  "6-Day Climbing": {
+    subtitle: "+ 2 days in a hotel",
+    icon: "🏔",
+    days: 6,
+    packages: [
+      { name: "Lemosho route 6 days", price: 3838 },
+      { name: "Machame route 6 days", price: 3803 },
+      { name: "Marangu route 6 days", price: 3743 },
+      { name: "Rongai route 6 days", price: 3876 },
+      { name: "Umbwe route 6 days", price: 3740 },
+    ],
+  },
+  "7-Day Climbing": {
+    subtitle: "+ 2 days in a hotel",
+    icon: "🏔",
+    days: 7,
+    packages: [
+      { name: "Lemosho route 7 days", price: 3968 },
+      { name: "Machame route 7 days", price: 3933 },
+      { name: "Rongai route 7 days", price: 4006 },
+      { name: "Northern Circuit 7 days", price: 4120 },
+    ],
+  },
+  "8-Day Climbing": {
+    subtitle: "+ 2 days in a hotel",
+    icon: "🏔",
+    days: 8,
+    packages: [
+      { name: "Northern Circuit 8 days", price: 4280 },
+      { name: "Lemosho route 8 days", price: 4098 },
+    ],
+  },
+};
+
+const includes = [
+  {
+    icon: "🚐",
+    title: "All transfers",
+    desc: "When you arrive in Tanzania, our team will be waiting to collect you from Kilimanjaro International Airport. We handle all ground transfers throughout your trip — hotel to gate, camp to camp, and back to the airport at the end.",
+  },
+  {
+    icon: "🏨",
+    title: "Hotel before and after the hike",
+    desc: "The night before your climb you'll rest at our partner hotel in Arusha — a warm bed, a good meal, and time to settle in before the adventure begins. A recovery night in the same hotel is included after your descent.",
+  },
+  {
+    icon: "⛺",
+    title: "Camping equipment",
+    desc: "HAO Expedition & Safari equips every climber with quality mountain tents, sleeping mats, dining tents, and camp kitchen setups. Our gear is regularly inspected and maintained so you can focus entirely on the climb.",
+  },
+  {
+    icon: "🍽",
+    title: "Meals on the hike",
+    desc: "At HAO Expedition & Safari we understand that fuelling well is part of summit success. Three hot meals a day are prepared by our mountain cooks throughout the climb — hearty breakfasts, packed lunches, and warm evening dinners at camp.",
+  },
+  {
+    icon: "🧭",
+    title: "Guide and porters",
+    desc: "On your adventure you'll be led by a certified senior guide and supported by an experienced porter team. Our staff-to-client ratios are deliberately generous — you'll never feel rushed or unattended on the mountain.",
+  },
+  {
+    icon: "🩺",
+    title: "Medical check-ups & first aid",
+    desc: "Every morning and evening our guides conduct health checks — pulse oximeter readings, altitude sickness assessments, and hydration monitoring. We carry a fully loaded first aid kit and supplemental oxygen on every expedition.",
+  },
+  {
+    icon: "🎫",
+    title: "Park fees",
+    desc: "HAO Expedition & Safari trips are fully inclusive of all Kilimanjaro National Park fees, rescue fees, and conservation levies. There are no hidden costs — the price you see covers everything payable to the park authority.",
+  },
+];
+
+const excludes = [
+  {
+    icon: "✈️",
+    title: "International flights",
+    desc: "You will be responsible for covering your own international airfare. Feel free to contact our travel advisors — we're happy to recommend airlines operating flights into Kilimanjaro International Airport (JRO) and connecting routes.",
+  },
+  {
+    icon: "💐",
+    title: "Tips for the climbing crew",
+    desc: "Tipping is a well-established practice in mountain hiking worldwide. While never mandatory at HAO Expedition & Safari, our clients are warmly encouraged to tip their mountain crew as a gesture of gratitude for exceptional service.",
+  },
+  {
+    icon: "🛂",
+    title: "Tanzania visa",
+    desc: "Most nationalities obtain a single-entry 90-day visa on arrival or online for $50 USD. US nationals are required to pay $100 for a multi-entry visa. Contact our travel advisors to learn more about Tanzania visa requirements.",
+  },
+  {
+    icon: "🎒",
+    title: "Personal gear & rentals",
+    desc: "If you intend to rent gear from home, you can provide us with your list through your HAO portal account and we'll have everything prepared before you arrive. See the full gear list below for what you'll need on the mountain.",
+  },
+  {
+    icon: "💼",
+    title: "Single supplement",
+    desc: "Our packages are priced on a shared-room basis. If you are travelling solo and prefer a private room at our partner hotel in Arusha, a single supplement fee applies. Contact our team at HAO Expedition & Safari for the current rate.",
+  },
+  {
+    icon: "🛡",
+    title: "Travel insurance",
+    desc: "Travel insurance is not included. All participants must hold a policy covering trekking to 6,000m and helicopter evacuation. Requirements vary by country — contact your insurer to confirm coverage before booking.",
+  },
+  {
+    icon: "🍴",
+    title: "Lunch & dinner at the hotel",
+    desc: "Hotel accommodation is included on a bed & breakfast basis. Lunch and dinner at our hotel restaurant in Arusha are payable separately — or you're welcome to dine anywhere in town.",
+  },
+  {
+    icon: "🚽",
+    title: "Portable toilet",
+    desc: "Portable toilets are not included in the package to keep costs down. Public facilities are available at all camps. For those who prefer extra comfort, rental is available on request — not available on the Marangu route due to park regulations.",
+  },
+];
+
+const gearList = [
+  "Large duffel bag (under 15 kg)",
+  "Day pack for daily gear",
+  "Waterproof backpack cover",
+  "Waterproof & windproof hard-shell jacket and pants",
+  "Insulated down jacket",
+  "Fleece or soft-shell jacket",
+  "Base layers / thermal underwear",
+  "Hiking pants and warm skin pants",
+  "Moisture-wicking T-shirts & long-sleeve shirts (×4)",
+  "Waterproof hiking boots with good ankle support",
+  "Camp shoes — sneakers or sandals",
+  "Socks (×4 pairs)",
+  "Gaiters",
+  "Sun hat or cap with a brim",
+  "Balaclava / buff",
+  "Light trekking gloves and mitten gloves",
+  "UV-protection sunglasses",
+  "Sleeping bag (rated −10°C or lower)",
+  "Trekking poles",
+  "Headlamp + extra lithium batteries",
+  "Water bottle (2 L minimum)",
+  "Microfibre quick-dry towels",
+  "Personal first aid kit & prescription medicine",
+];
+---
+
+<Layout
+  title="Kilimanjaro Packages & Pricing — HAO Expedition & Safari"
+  description="Transparent pricing for all Kilimanjaro climbing routes. 5, 6, 7, and 8-day packages with full inclusions listed."
+>
+  <Nav />
+
+  <main class="packages-page">
+
+    <!-- ===== HERO ===== -->
+    <section class="pkg-hero">
+      <div class="pkg-hero__bg">
+        <img src="/images/kilimanjaro-peak.png" alt="Mount Kilimanjaro at dawn" />
+        <div class="pkg-hero__overlay"></div>
+      </div>
+      <div class="pkg-hero__content container">
+        <span class="section-label">Climb Kilimanjaro</span>
+        <h1>Packages &<br /><em>Pricing</em></h1>
+        <p>Transparent, all-inclusive pricing across every route and duration. No surprises on the mountain.</p>
+        <a href="#routes" class="btn-gold">View All Routes</a>
+      </div>
+    </section>
+
+    <!-- ===== ROUTE PRICING ===== -->
+    <section class="pkg-routes" id="routes">
+      <div class="container">
+
+        <header class="pkg-section-header">
+          <span class="section-label">Choose Your Route</span>
+          <h2>Kilimanjaro Climbing Packages</h2>
+          <p>All prices are per person in USD and include hotel stays before and after the climb. Select the duration and route that suits your experience level and schedule.</p>
+        </header>
+
+        <div class="pkg-grid">
+          {Object.entries(routes).map(([label, group]) => (
+            <div class="pkg-card">
+              <div class="pkg-card__header">
+                <div class="pkg-card__icon">
+                  <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                    <path d="M4 22L14 6l10 16H4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M9 22l5-8 5 8" stroke="currentColor" stroke-width="1" stroke-linejoin="round" opacity="0.5"/>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="pkg-card__title">{label}</h3>
+                  <p class="pkg-card__subtitle">{group.subtitle}</p>
+                </div>
+              </div>
+
+              <div class="pkg-card__routes">
+                {group.packages.map((pkg) => (
+                  <div class="pkg-route-row">
+                    <a href="#contact-form" class="pkg-route-name">{pkg.name}</a>
+                    <span class="pkg-route-price">${pkg.price.toLocaleString()}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a href="#contact-form" class="pkg-card__cta btn-gold">Plan my climb</a>
+            </div>
+          ))}
+        </div>
+
+        <div class="pkg-group-banner">
+          <div class="pkg-group-banner__icon">
+            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+              <circle cx="10" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+              <circle cx="18" cy="9" r="3.5" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M3 22c0-4 3-6 7-6s7 2 7 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M18 16c3 0 6 2 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <strong>Group climbs — up to 20 hikers</strong>
+            <p>We accommodate groups of up to 20 hikers per expedition. Groups of 6 or more qualify for a dedicated group rate. Contact us for a custom quote tailored to your group size and preferred route.</p>
+          </div>
+          <a href="#contact-form" class="btn-gold pkg-group-banner__cta">Get a group quote</a>
+        </div>
+
+        <p class="pkg-note">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.2"/><path d="M8 7v4M8 5v.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          All prices are in USD per person. Private climbs and solo travellers welcome at the listed rates.
+        </p>
+      </div>
+    </section>
+
+    <!-- ===== INCLUDES / EXCLUDES ===== -->
+    <section class="pkg-inclusions">
+      <div class="container">
+
+        <!-- INCLUDES -->
+        <div class="pkg-inc-block">
+          <header class="pkg-section-header pkg-section-header--light">
+            <span class="section-label">What's Covered</span>
+            <h2>Climbing cost includes</h2>
+          </header>
+
+          <div class="pkg-inc-grid">
+            {includes.map((item) => (
+              <div class="pkg-inc-item">
+                <div class="pkg-inc-item__icon pkg-inc-item__icon--include">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M3 9l4.5 4.5L15 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- DIVIDER -->
+        <div class="pkg-divider">
+          <span>Not included in the package</span>
+        </div>
+
+        <!-- EXCLUDES -->
+        <div class="pkg-inc-block">
+          <header class="pkg-section-header pkg-section-header--light">
+            <span class="section-label">Not Included</span>
+            <h2>Climbing cost excludes</h2>
+          </header>
+
+          <div class="pkg-inc-grid">
+            {excludes.map((item) => (
+              <div class="pkg-inc-item">
+                <div class="pkg-inc-item__icon pkg-inc-item__icon--exclude">
+                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+                    <path d="M5 5l8 8M13 5l-8 8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4>{item.title}</h4>
+                  <p>{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== GEAR LIST ===== -->
+    <section class="pkg-gear">
+      <div class="container">
+        <div class="pkg-gear__inner">
+          <div class="pkg-gear__text">
+            <span class="section-label">What to Bring</span>
+            <h2>Personal gear checklist</h2>
+            <p>The following items are not included in the package price. You may bring your own or rent from us before departure — just let us know through your HAO portal account and we'll have everything ready when you arrive in Arusha.</p>
+            <a href="#contact-form" class="btn-gold" style="margin-top: 1rem;">Request gear rental</a>
+          </div>
+
+          <div class="pkg-gear__list-wrap">
+            <ul class="pkg-gear__list">
+              {gearList.map((item) => (
+                <li>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                    <rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.2"/>
+                    <path d="M4 7l2.5 2.5L10 4.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA / ENQUIRY ===== -->
+    <section class="pkg-cta" id="contact-form">
+      <div class="pkg-cta__bg">
+        <img src="/images/kilimanjaro-sunset.png" alt="Kilimanjaro at golden hour" loading="lazy" />
+        <div class="pkg-cta__overlay"></div>
+      </div>
+      <div class="container pkg-cta__inner">
+        <div class="pkg-cta__text">
+          <span class="section-label" style="color: var(--gold-light)">Ready to Climb?</span>
+          <h2>Plan my Kilimanjaro<br />climb</h2>
+          <p>Tell us your preferred dates and route — we'll build a full itinerary and send you a personalised quote within 24 hours.</p>
+        </div>
+
+        <form class="pkg-form" id="pkgForm">
+          <div class="pkg-form__row">
+            <div class="pkg-form__group">
+              <label for="pf-name">Full Name</label>
+              <input type="text" id="pf-name" placeholder="Jane Smith" required />
+            </div>
+            <div class="pkg-form__group">
+              <label for="pf-email">Email Address</label>
+              <input type="email" id="pf-email" placeholder="jane@example.com" required />
+            </div>
+          </div>
+          <div class="pkg-form__row">
+            <div class="pkg-form__group">
+              <label for="pf-route">Preferred Route</label>
+              <select id="pf-route">
+                <option value="">Select a route</option>
+                <option>Marangu (5 days) — $3,097</option>
+                <option>Lemosho (6 days) — $3,838</option>
+                <option>Machame (6 days) — $3,803</option>
+                <option>Marangu (6 days) — $3,743</option>
+                <option>Rongai (6 days) — $3,876</option>
+                <option>Umbwe (6 days) — $3,740</option>
+                <option>Lemosho (7 days) — $3,968</option>
+                <option>Machame (7 days) — $3,933</option>
+                <option>Northern Circuit (7 days) — $4,120</option>
+                <option>Northern Circuit (8 days) — $4,280</option>
+                <option>Lemosho (8 days) — $4,098</option>
+                <option>Not sure yet — advise me</option>
+              </select>
+            </div>
+            <div class="pkg-form__group">
+              <label for="pf-date">Preferred Start Date</label>
+              <input type="text" id="pf-date" placeholder="e.g. March 2027, or flexible" />
+            </div>
+          </div>
+          <div class="pkg-form__group">
+            <label for="pf-group">Group Size</label>
+            <select id="pf-group">
+              <option value="">Select size</option>
+              <option>Solo climber</option>
+              <option>2 people</option>
+              <option>3–5 people</option>
+              <option>6–10 people</option>
+              <option>10+ people</option>
+            </select>
+          </div>
+          <div class="pkg-form__group">
+            <label for="pf-msg">Anything else we should know?</label>
+            <textarea id="pf-msg" rows="3" placeholder="Previous hiking experience, dietary requirements, special requests..."></textarea>
+          </div>
+          <button type="submit" class="btn-gold pkg-form__submit">
+            Send my enquiry
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="pkg-form__success" id="pkgSuccess" hidden>
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M6 10l3 3 5-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Thank you! We'll be in touch within 24 hours.
+          </div>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<style>
+  /* ===== PAGE BASE ===== */
+  .packages-page {
+    padding-top: 0;
+  }
+
+  /* ===== HERO ===== */
+  .pkg-hero {
+    position: relative;
+    height: 60vh;
+    min-height: 480px;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+  }
+
+  .pkg-hero__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .pkg-hero__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 40%;
+  }
+
+  .pkg-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(10,26,16,0.2) 0%,
+      rgba(10,26,16,0.75) 70%,
+      rgba(10,26,16,0.92) 100%
+    );
+  }
+
+  .pkg-hero__content {
+    position: relative;
+    z-index: 1;
+    padding-bottom: clamp(2.5rem, 5vw, 4rem);
+    color: var(--white);
+  }
+
+  .pkg-hero__content h1 {
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 400;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+
+  .pkg-hero__content h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .pkg-hero__content p {
+    color: rgba(255,255,255,0.75);
+    max-width: 44ch;
+    font-size: 1rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .pkg-hero__content .section-label {
+    color: var(--gold-light);
+  }
+
+  /* ===== SECTION HEADER ===== */
+  .pkg-section-header {
+    margin-bottom: 3rem;
+  }
+
+  .pkg-section-header h2 {
+    color: var(--green-deep);
+    margin-bottom: 0.75rem;
+  }
+
+  .pkg-section-header p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    max-width: 56ch;
+    line-height: 1.75;
+  }
+
+  .pkg-section-header--light h2 {
+    color: var(--green-deep);
+  }
+
+  /* ===== ROUTE PRICING ===== */
+  .pkg-routes {
+    padding: var(--section-padding) 0;
+    background: var(--ivory);
+  }
+
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .pkg-card {
+    background: var(--white);
+    border: 1px solid var(--ivory-dark);
+    border-radius: 2px;
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .pkg-card:hover {
+    box-shadow: 0 8px 32px rgba(15,35,24,0.1);
+    transform: translateY(-2px);
+  }
+
+  .pkg-card__header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1.5px solid var(--ivory-dark);
+  }
+
+  .pkg-card__icon {
+    width: 44px;
+    height: 44px;
+    background: var(--green-forest);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pkg-card__title {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--green-deep);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin-bottom: 0.15rem;
+  }
+
+  .pkg-card__subtitle {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: none;
+  }
+
+  .pkg-card__routes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+  }
+
+  .pkg-route-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--ivory-dark);
+  }
+
+  .pkg-route-row:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .pkg-route-name {
+    font-size: 0.9rem;
+    color: var(--green-mid);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: var(--gold);
+    transition: color 0.2s;
+  }
+
+  .pkg-route-name:hover {
+    color: var(--gold);
+  }
+
+  .pkg-route-price {
+    font-family: var(--font-serif);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .pkg-card__cta {
+    margin-top: auto;
+    justify-content: center;
+    font-size: 0.8rem;
+    padding: 0.7rem 1.25rem;
+  }
+
+  .pkg-group-banner {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: var(--green-forest);
+    padding: 1.5rem 2rem;
+    margin-bottom: 1.25rem;
+    flex-wrap: wrap;
+  }
+
+  .pkg-group-banner__icon {
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .pkg-group-banner strong {
+    display: block;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .pkg-group-banner p {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.65);
+    max-width: 52ch;
+    line-height: 1.6;
+  }
+
+  .pkg-group-banner__cta {
+    margin-left: auto;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding: 0.65rem 1.4rem;
+    flex-shrink: 0;
+  }
+
+  .pkg-note {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    max-width: none;
+  }
+
+  .pkg-note svg {
+    flex-shrink: 0;
+    color: var(--gold);
+  }
+
+  /* ===== INCLUSIONS ===== */
+  .pkg-inclusions {
+    padding: var(--section-padding) 0;
+    background: var(--ivory-dark);
+  }
+
+  .pkg-inc-block {
+    margin-bottom: 3rem;
+  }
+
+  .pkg-inc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .pkg-inc-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    background: var(--white);
+    padding: 1.25rem;
+    border-radius: 2px;
+    border: 1px solid var(--ivory-dark);
+  }
+
+  .pkg-inc-item__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .pkg-inc-item__icon--include {
+    background: rgba(42, 84, 56, 0.1);
+    color: var(--green-mid);
+  }
+
+  .pkg-inc-item__icon--exclude {
+    background: rgba(180, 60, 40, 0.08);
+    color: #b43c28;
+  }
+
+  .pkg-inc-item h4 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--green-deep);
+    margin-bottom: 0.35rem;
+  }
+
+  .pkg-inc-item p {
+    font-size: 0.83rem;
+    color: var(--text-muted);
+    line-height: 1.65;
+    max-width: none;
+  }
+
+  .pkg-divider {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin: 3rem 0;
+  }
+
+  .pkg-divider::before,
+  .pkg-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--sand);
+  }
+
+  .pkg-divider span {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+
+  /* ===== GEAR LIST ===== */
+  .pkg-gear {
+    padding: var(--section-padding) 0;
+    background: var(--green-deep);
+  }
+
+  .pkg-gear__inner {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .pkg-gear__text .section-label {
+    color: var(--gold);
+  }
+
+  .pkg-gear__text h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .pkg-gear__text p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 38ch;
+  }
+
+  .pkg-gear__list-wrap {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 1.75rem 2rem;
+  }
+
+  .pkg-gear__list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .pkg-gear__list li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.4;
+  }
+
+  .pkg-gear__list svg {
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  /* ===== CTA FORM ===== */
+  .pkg-cta {
+    position: relative;
+    padding: var(--section-padding) 0;
+    overflow: hidden;
+  }
+
+  .pkg-cta__bg {
+    position: absolute;
+    inset: 0;
+  }
+
+  .pkg-cta__bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+  }
+
+  .pkg-cta__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10,26,16,0.88);
+  }
+
+  .pkg-cta__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .pkg-cta__text h2 {
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+
+  .pkg-cta__text p {
+    color: rgba(255,255,255,0.65);
+    font-size: 0.9rem;
+    line-height: 1.75;
+    max-width: 38ch;
+  }
+
+  /* ===== FORM ===== */
+  .pkg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .pkg-form__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .pkg-form__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .pkg-form__group label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .pkg-form__group input,
+  .pkg-form__group select,
+  .pkg-form__group textarea {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    color: var(--white);
+    background: rgba(255,255,255,0.08);
+    border: 1.5px solid rgba(255,255,255,0.18);
+    padding: 0.7rem 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+
+  .pkg-form__group input::placeholder,
+  .pkg-form__group textarea::placeholder {
+    color: rgba(255,255,255,0.35);
+  }
+
+  .pkg-form__group input:focus,
+  .pkg-form__group select:focus,
+  .pkg-form__group textarea:focus {
+    border-color: var(--gold);
+  }
+
+  .pkg-form__group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23E2B24A' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    padding-right: 2.5rem;
+    cursor: pointer;
+  }
+
+  .pkg-form__group select option {
+    background: var(--green-deep);
+    color: var(--white);
+  }
+
+  .pkg-form__group textarea {
+    resize: vertical;
+    min-height: 90px;
+  }
+
+  .pkg-form__submit {
+    align-self: flex-start;
+    margin-top: 0.25rem;
+  }
+
+  .pkg-form__success {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.25rem;
+    background: rgba(42,84,56,0.3);
+    border: 1px solid var(--green-mid);
+    color: var(--gold-light);
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+
+  .pkg-form__success[hidden] { display: none; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    .pkg-gear__inner,
+    .pkg-cta__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+
+    .pkg-gear__text p,
+    .pkg-cta__text p {
+      max-width: none;
+    }
+
+    .pkg-gear__list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .pkg-form__row {
+      grid-template-columns: 1fr;
+    }
+
+    .pkg-inc-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('pkgForm') as HTMLFormElement;
+  const success = document.getElementById('pkgSuccess');
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = form.querySelector('.pkg-form__submit') as HTMLButtonElement;
+    if (btn) { btn.textContent = 'Sending…'; btn.disabled = true; }
+    setTimeout(() => {
+      form.reset();
+      if (success) success.hidden = false;
+      if (btn) { btn.innerHTML = 'Send my enquiry <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8h12M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'; btn.disabled = false; }
+    }, 1200);
+  });
+</script>

@@ -1,0 +1,5 @@
+# Hostinger fix: Astro HTML uses absolute /_astro/* and /images/*,
+# but build lives in public_html/dist/. Rewrite root requests to dist/.
+RewriteEngine On
+RewriteRule ^_astro/(.*)$ dist/_astro/$1 [L]
+RewriteRule ^images/(.*)$ dist/images/$1 [L]
