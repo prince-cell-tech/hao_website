@@ -1,5 +1,9 @@
-# Hostinger fix: Astro HTML uses absolute /_astro/* and /images/*,
+# Hostinger: Astro HTML uses absolute /_astro/* and /images/*,
 # but build lives in public_html/dist/. Rewrite root requests to dist/.
+# All other non-file requests route to index.php (front controller).
 RewriteEngine On
 RewriteRule ^_astro/(.*)$ dist/_astro/$1 [L]
 RewriteRule ^images/(.*)$ dist/images/$1 [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
